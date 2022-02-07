@@ -28,12 +28,19 @@
 <body>
         <div class="formbox">
             <h1>Dojo Survey</h1>
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+                {% for message in messages %}            <!-- loop through the messages -->
+                    <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
             <form action="/process"method="post">
                 <div class="mb-3 flexbox">
                     <label class="form-label flexlabel form-control-lg">Full Name:</label>
                     <input type="text" class="form-control form-control-lg" placeholder="First & Last Name" name="name">
                     <label class="form-label form-control-lg" for="location">Location:</label>
-                    <select name="city" id="location" class="form-select form-select-lg mb-3">
+                    <select name="location" id="location" class="form-select form-select-lg mb-3">
                         <option selected>Select City...</option>
                         <option value="Los Angeles">Los Angeles</option>
                         <option value="Boston">Boston</option>
